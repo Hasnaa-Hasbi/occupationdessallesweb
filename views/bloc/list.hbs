@@ -1,0 +1,59 @@
+
+<div class="container">
+    <main role="main" class="pb-3" style="padding-top: 40px;">
+
+<div class="container table-bordered " style="padding-bottom: 5px; width: 100%; border-radius: 6px; border-width: 1px; border-color:rgb(212, 214, 241);margin-bottom: 60px;">
+    <h3 style="float: left;">Blocs List</h3>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#blockModal" style="float: right; border-radius: 6px; padding: 8px;font-size:medium; margin-top:10px; width:150px"><b>Add Bloc</b></a>
+</div>
+
+
+<!-- Add bloc Modal-->
+<div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header bg-banner-2 p-4">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title font-alt text-white" id="blockModalLabel">Add Bloc</h2>
+			</div>
+			<div class="modal-body border-0 p-4" style="padding: 40px;">
+				<form action="/bloc" method="POST">
+                <input type="hidden" name="_id" value="{{bloc._id}}">
+					<!-- Name input-->
+					<div class="form-floating mb-3">
+						<input style="height: 40px;" class="form-control btn-outline-light" name="code" type="text" placeholder="Code..." required autocomplete="off"/></div><br>
+					<!-- Email address input-->
+					<div class="form-floating mb-3">
+						<input  style="height: 40px;" class="form-control btn-outline-light" name="libelle" type="text" placeholder="Libelle..." required autocomplete="off"/><br>
+					</div><br>
+                    <div class="d-grid text-center"><button class="btn btn-primary btn-lg" id="submitButton" style="width: 120px" type="submit">Submit</button></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<table id="myTable" class="display table table-bordered table-striped" style="text-align: center;width:100%">
+    <thead style="background:rgb(212, 214, 241)">
+        <tr>
+            <th style="text-align: center;">Code</th>
+            <th style="text-align: center;">Libelle</th>
+            <th style="text-align: center;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.code}}</td>
+            <td>{{this.libelle}}</td>
+            <td style="width: 370px;">
+                <a class="btn btn-info" href="/bloc/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i><b>Edit</b></a>
+                <a class="btn btn-danger" href="/bloc/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i><b>Delete</b></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</main>
+</div>
+

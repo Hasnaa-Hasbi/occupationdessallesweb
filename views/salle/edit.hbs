@@ -1,0 +1,32 @@
+
+<div class="container">
+    <main role="main" class="pb-3" style="padding-top: 60px;margin-bottom:15px">
+<div class="text-center border p-5 mt-5" style="padding:30px;width:60%;margin-left:21%; background-color:rgb(212, 214, 241); border-radius:12px;">
+<center><h3>Edit Classroom</h3></center><br>
+
+<form action="/salle" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{salle._id}}">
+    <div class="form-group">
+        <input type="text" class="form-control" name="code" placeholder="code " value="{{salle.code}}">
+        <div class="text-danger">{{salle.codeError}}</div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="libelle" placeholder="libelle" value="{{salle.libelle}}">
+        <div class="text-danger">{{salle.libelleError}}</div>
+    </div>
+    <div class="form-group">
+            <select  class="form-control"  id="bloc" name="bloc">
+                <option disabled selected >Bloc</option>
+                {{#each blocs}}
+            <option name={{this._id}} value={{this._id}}>{{this.code}}</option>
+                {{/each}}
+            </select>
+    </div>
+    <br>
+    <div class="form-group">
+        <button class="btn btn-primary" style="width: 150px;height:40px" type="submit"><i class="fa fa-database"></i> Submit</button>
+    </div>
+</form>
+</div>
+</main>
+</div>

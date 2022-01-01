@@ -1,0 +1,26 @@
+
+<div class="container">
+    <main role="main" class="pb-3" style="padding-top: 50px;margin-bottom: 116px;">
+<center><h3>Occupation of {{salle.libelle}}</h3></center><br><br><br>
+   
+<table id="myTable" class="display table table-bordered table-striped" style="text-align: center;">
+    <thead style="background-color: rgb(212, 214, 241)">
+        <tr>
+            <th style="text-align: center;">Date</th>
+            <th style="text-align: center;">Créneaux</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}} 
+        <tr>
+            <td>{{date}}</td>
+            <td>{{valueCreneau}}</td>                              
+        </tr>
+        {{/each}} 
+      
+    </tbody>
+</table>
+</main>
+</div>
+
+</body>

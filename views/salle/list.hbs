@@ -1,0 +1,71 @@
+
+<div class="container">
+    <main role="main" class="pb-3" style="padding-top: 14px;">
+
+<div class="container table-bordered " style="padding-bottom: 5px; width: 100%; border-radius: 6px; border-width: 1px; border-color:rgb(212, 214, 241);margin-bottom: 40px;">
+    <h3 style="float: left;">Classrooms List</h3>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomModal" style="float: right; border-radius: 6px; padding: 8px;font-size:medium; margin-top:10px; width:150px"><b>Add Classroom</b></a>
+</div>
+
+<table id="myTable" class="display table table-bordered table-striped" style="text-align: center;">
+    <thead style="background:rgb(212, 214, 241)">
+        <tr>
+            <th style="text-align: center;">Code</th>
+            <th style="text-align: center;">Libelle</th>
+            <th style="text-align: center;">Bloc</th>
+            <th style="text-align: center;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.code}}</td>
+            <td>{{this.libelle}}</td>
+            <td>{{this.nameBloc}}</td>
+            <td style="width: 370px;">
+                <a class="btn btn-primary" href="/occupation/list/{{this._id}}">Occupation</a>
+                <a class="btn btn-info" href="/occupation/qrgenerator/{{this._id}}">QR Code</a>
+                <a class="btn btn-warning" href="/salle/{{this._id}}">Edit</a>
+                <a class="btn btn-danger" href="/salle/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');">Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</main>
+</div>
+
+
+<!-- Add room Modal-->
+<div class="modal fade" id="roomModal" tabindex="-1" aria-labelledby="roomModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header bg-banner-2 p-4">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title font-alt text-white" id="roomModalLabel">Add Classroom</h2>
+			</div>
+			<div class="modal-body border-0 p-4" style="padding: 40px;">
+				<form action="/salle" method="POST">
+                <input type="hidden" name="_id" value="">
+					<!-- Name input-->
+					<div class="form-floating mb-3">
+						<input style="height: 40px;" class="form-control btn-outline-light" name="code" type="text" placeholder="Code..." required autocomplete="off"/></div><br>
+					<!-- Email address input-->
+					<div class="form-floating mb-3">
+						<input  style="height: 40px;" class="form-control btn-outline-light" name="libelle" type="text" placeholder="Libelle..." required autocomplete="off"/><br>
+					</div>
+                    <div class="form-floating mb-3">
+                        <select  class="form-control"  id="bloc" name="bloc" placeholder="Bloc" style="height: 40px;">
+                            <option disabled selected >Bloc</option>
+                        {{#each blocs}}
+                            <option name={{this._id}} value={{this._id}}>{{this.code}}</option>
+                        {{/each}}
+                        </select>
+                    </div>
+                    <br>
+                    <div class="d-grid text-center"><button class="btn btn-primary btn-lg" id="submitButton" style="width: 120px" type="submit">Submit</button></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

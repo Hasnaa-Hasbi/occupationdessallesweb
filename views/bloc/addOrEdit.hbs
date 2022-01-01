@@ -1,0 +1,23 @@
+
+<div class="container">
+    <main role="main" class="pb-3" style="padding-top: 80px;margin-bottom:24px">
+<div class="text-center border p-5 mt-5" style="padding:40px;width:60%;margin-left:21%; background-color:rgb(212, 214, 241); border-radius:12px;">
+<center><h3>Edit Block</h3></center><br>
+<form action="/bloc" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{bloc._id}}">
+    <div class="form-group">
+        <input type="text" class="form-control" name="code" placeholder="code " value="{{bloc.code}}">
+        <div class="text-danger">{{bloc.codeError}}</div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="libelle" placeholder="libelle" value="{{bloc.libelle}}">
+        <div class="text-danger">{{bloc.libelleError}}</div>
+    </div>
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" style="width: 150px; height:40px"><i class="fa fa-database"></i> Submit</button>        
+    </div>
+</form>
+</div>
+</main>
+</div>

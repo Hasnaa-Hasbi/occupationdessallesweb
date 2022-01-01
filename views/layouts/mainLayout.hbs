@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>ENSAJ CLASSROOMS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+
+     <!-- CUSTOM CSS -->
+  <link href="../static/style.css" rel="stylesheet">
+</head>
+
+<header>
+        <nav class="navbar" style="background:rgb(212, 214, 241);">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><font color="rgb(41, 41, 87);">ENSAJ CLASSROOMS</font></a>
+            </div>
+            <ul class="nav navbar-nav" style="margin-left: 530px;">
+                <li class="active"><a href="/bloc/list" style="color: rgb(41, 41, 87);">Blocs</a></li>
+                <li><a href="/salle/list" style="color: rgb(41, 41, 87);">Salles</a></li>
+                <li><a href="/occupation/add" style="color: rgb(41, 41, 87);">Add Occupation</a></li>
+            </ul>
+        </div>
+        </nav>
+</header>
+<body style="background-image: url(../static/images/simpleBg.jpg); background-repeat: no-repeat;background-size: cover;" >
+        
+        {{{body}}}
+
+     <footer class="border-top footer text-muted" style="margin-top:82px;padding:10px;background:rgb(212, 214, 241);color: black;">
+        <div class="container">
+            &copy; 2021. HASBI-SOROUR
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" 
+    href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <script type="text/javascript" 
+    src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" 
+    src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#myTable').dataTable();
+        });
+    </script>
+
+</body>
+
+</html>
