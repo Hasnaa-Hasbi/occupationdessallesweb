@@ -1,4 +1,7 @@
 
+ <link rel="stylesheet" type="text/css" href="../static/DataTables/datatables.min.css"/>    
+    <script type="text/javascript" src="../static/DataTables/datatables.min.js"></script>
+
 <div class="container">
     <main role="main" class="pb-3" style="padding-top: 50px;margin-bottom: 116px;">
 <center><h3>Occupation of {{salle.libelle}}</h3></center><br><br><br>
@@ -25,3 +28,8 @@
 
 </body>
 
+<script>
+        $(document).ready(function(){
+            $('#myTable').dataTable();
+        });
+    </script>
