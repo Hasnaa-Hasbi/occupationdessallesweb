@@ -1,0 +1,61 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+
+<div style="padding:5px; padding-left:210px; padding-right:210px;padding-bottom:200px">
+    <div class="container shadow text-center" style="float:left; border-radius: 6px; background-color:rgb(224, 230, 245); padding:30px; margin:40px; width: 360px" >
+        <h3><font color="rgb(41, 41, 87);">Number of Blocs :</font> <font color=blue><b>{{nbBlocs}}</b></font></h3>
+    </div>
+    <div class="container shadow text-center" style="float:right; border-radius: 6px; background-color:rgb(224, 230, 245); padding:30px; margin:40px; width: 360px" >
+        <h3><font color="rgb(41, 41, 87);">Number of Classrooms : </font><font color=blue><b>{{nbClassrooms}}</b></font></h3>
+    </div>
+</div>
+
+<hr style="width: 62%; border-color:rgb(197, 196, 196);">
+<div class="text-center" style="margin-top:44px; width:62%; margin-left:250px; margin-bottom:60px">
+    <h3><font color="rgb(41, 41, 87);">Number of Classrooms per Bloc</font></h3>
+    <table id="myTable" class="display table table-bordered table-striped text-center">
+        <thead style="background:rgb(212, 214, 241)">
+            <tr>
+            {{#each blocs}}
+            <th style="text-align: center;">{{this.libelle}}</th>
+            {{/each}} 
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+            {{#each SallesBloc}}
+                <td>{{this}} classroom</td>
+            {{/each}}
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr style="width: 62%; border-color:rgb(197, 196, 196);">
+
+
+<canvas id="graph1" style="margin:270px; margin-top:70px; margin-bottom: 92px"></canvas>
+
+
+<script>
+    var ctx = document.getElementById('graph1').getContext('2d');
+
+    var data = {
+        labels: '{{{sallesNames}}}',
+        datasets: [{
+            label: "Occupation of classrooms",
+            backgroundColor: 'lightblue',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0,0,0,0,0,0]
+        }]
+    }
+   
+    var config = {
+        type: 'bar',
+        data: data,
+    }
+    var graph1 = new Chart(ctx, config)
+</script>
+

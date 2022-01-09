@@ -380,3 +380,38 @@ router.get('/occupations/:id',function(req,res,next){
 
 
 
+/** 
+ * @swagger 
+ * /api/occupations/: 
+ *   post: 
+ *     description: Add Occupation
+ *     parameters:
+ *      - name: idSalle
+ *        in: formData  
+ *        type: string
+ *        required: true
+ *      - name: idCreneau
+ *        in: formData  
+ *        type: string
+ *     responses:  
+ *        200: 
+ *         description: Success 
+ *     tags:
+ *       - Occupations  
+ *   
+ */
+ router.post('/occupations',function(req,res,next){
+    var occup = new occupation();
+    occup.date = (new Date()).toDateString();
+    salle.findById(req.body.idSalle).then(function(docs){
+        occup.idSalle=docs;
+        creneaux.findById(req.body.idCreneau ).then(function(creneauDocs){
+            occup.idCreneau=creneauDocs; 
+            occup.valueCreneau=creneauDocs.debut+"-"+creneauDocs.fin;
+            occupation.create(occup).then(function(occup){
+                res.send(occup);
+            }).catch(next);
+        }).catch(next);
+    }).catch(next);
+});
+
