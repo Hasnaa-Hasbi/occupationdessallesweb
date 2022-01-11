@@ -100,7 +100,7 @@ router.get('/qrgenerator/:id', (req, res) => {
         if (!err) {
             salle.code = doc.code;
             salle.libelle = doc.libelle;
-            QRCode.toDataURL(doc.libelle+"", (err, srcpic) => {
+            QRCode.toDataURL(doc._id+"", (err, srcpic) => {
                 if (!err) {
                     console.log(doc._id);
                     res.render("occupation/qrCode", {
