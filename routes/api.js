@@ -415,3 +415,26 @@ router.get('/occupations/:id',function(req,res,next){
     }).catch(next);
 });
 
+/** 
+ * @swagger 
+ * /api/occupations/{_Id}: 
+ *   delete: 
+ *     description: Delete Occupation
+ *     parameters:
+ *      - in: path
+ *        name: _Id   
+ *        type: string
+ *        required: true
+ *     responses:  
+ *        200: 
+ *         description: Success  
+ *     tags:
+ *       - Occupations 
+ *        
+ *   
+ */
+ router.delete('/occupations/:id',function(req,res,next){
+    occupation.findOneAndDelete({_id: req.params.id}).then(function(occup){
+        res.send(occup);
+    });
+});
