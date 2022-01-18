@@ -1,7 +1,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
-
 <div style="padding:5px; padding-left:210px; padding-right:210px;padding-bottom:200px">
     <div class="container shadow text-center" style="float:left; border-radius: 6px; background-color:rgb(224, 230, 245); padding:30px; margin:40px; width: 360px" >
         <h3><font color="rgb(41, 41, 87);">Number of Blocs :</font> <font color=blue><b>{{nbBlocs}}</b></font></h3>
@@ -40,10 +39,16 @@
 
 
 <script>
+    var salles= [];
+    '{{#each sallesNames}}'
+        salles.push('{{this}}');    
+    '{{/each}}'
+
+
     var ctx = document.getElementById('graph1').getContext('2d');
 
     var data = {
-        labels: '{{{sallesNames}}}',
+        labels: salles,
         datasets: [{
             label: "Occupation of classrooms",
             backgroundColor: 'lightblue',

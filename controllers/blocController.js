@@ -41,29 +41,50 @@ router.get('/', (req, res) => {
                         }
                         SallesBloc.push(nbr);
                     }
-                    Salle.find((err, docss) => {
+
+                    Occupation.find((err, occupationDos) => {
                         if (!err) {
-                            var sallesNames = [];
-                            for (var salle in docss) {
-                                sallesNames.push(docss[salle].code) 
+                            var occupationsSalle = [];
+                            for (var salle in salles) {
+                                var nbr=0;
+                                for (var occupation in occupationDos) {
+                                    Salle.find({ _id: occupationDos[occupation].idSalle }, (err, salleFound) => {
+                                        if (!err) {
+                                            nbr++;
+                                        }
+                                    }); 
+                                }
+                                occupationsSalle.push(nbr);
                             }
 
-                            
-                            res.render("home", {
-                                nbBlocs: nbBlocs,
-                                nbClassrooms: nbClassrooms,
-                                blocs: blocs,
-                                salles: salles,
-                                sallesNames: sallesNames,
-                                SallesBloc: SallesBloc,
-                                
-                                viewTitle: "Dashboard"
+                            Salle.find((err, docss) => {
+                                if (!err) {
+                                    var sallesNames = [];
+                                    for (var salle in docss) {
+                                        sallesNames.push(docss[salle].code) 
+                                    }
+        
+                                    res.render("home", {
+                                        nbBlocs: nbBlocs,
+                                        nbClassrooms: nbClassrooms,
+                                        blocs: blocs,
+                                        salles: salles,
+                                        sallesNames: sallesNames,
+                                        SallesBloc: SallesBloc,
+                                        viewTitle: "Dashboard"
+                                    });
+                                }
+                                else {
+                                    console.log('Error in retrieving bloc list :' + err);
+                                }
                             });
+                           
                         }
                         else {
                             console.log('Error in retrieving bloc list :' + err);
                         }
                     });
+                    
 
                 }
                 else {

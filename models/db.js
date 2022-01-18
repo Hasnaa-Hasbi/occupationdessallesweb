@@ -7,3 +7,4 @@ require('./bloc');
 require('./salle');
 require('./creneaux');
 require('./occupation');
+require('./user');

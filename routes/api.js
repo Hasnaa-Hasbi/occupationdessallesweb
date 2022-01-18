@@ -5,6 +5,7 @@ const Bloc = mongoose.model('Bloc');
 const salle = mongoose.model('Salle');
 const creneaux = mongoose.model('Creneau');
 const occupation = mongoose.model('Occupation');
+const User = mongoose.model('User');
 const {Schema}=require('mongoose');
 
 
@@ -437,4 +438,24 @@ router.get('/occupations/:id',function(req,res,next){
     occupation.findOneAndDelete({_id: req.params.id}).then(function(occup){
         res.send(occup);
     });
+});
+
+
+
+/** 
+ * @swagger 
+ * /api/users: 
+ *   get: 
+ *     description: Get all users
+ *     responses:  
+ *       200: 
+ *         description: Success  
+ *     tags:
+ *       - Users 
+ *   
+ */ 
+ router.get('/users',function(req,res,next){
+    User.find({}).then(function(users){
+    res.send(users);
+}).catch(next);
 });
