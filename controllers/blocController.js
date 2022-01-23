@@ -48,11 +48,9 @@ router.get('/', (req, res) => {
                             for (var salle in salles) {
                                 var nbr=0;
                                 for (var occupation in occupationDos) {
-                                    Salle.find({ _id: occupationDos[occupation].idSalle }, (err, salleFound) => {
-                                        if (!err) {
-                                            nbr++;
-                                        }
-                                    }); 
+                                    if(occupationDos[occupation].nameSalle === salles[salle].code){
+                                        nbr++;
+                                    }
                                 }
                                 occupationsSalle.push(nbr);
                             }
@@ -70,6 +68,7 @@ router.get('/', (req, res) => {
                                         blocs: blocs,
                                         salles: salles,
                                         sallesNames: sallesNames,
+                                        occupationsSalle: occupationsSalle,
                                         SallesBloc: SallesBloc,
                                         viewTitle: "Dashboard"
                                     });

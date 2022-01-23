@@ -406,6 +406,7 @@ router.get('/occupations/:id',function(req,res,next){
     occup.date = (new Date()).toDateString();
     salle.findById(req.body.idSalle).then(function(docs){
         occup.idSalle=docs;
+        occup.nameSalle=docs.code;
         creneaux.findById(req.body.idCreneau ).then(function(creneauDocs){
             occup.idCreneau=creneauDocs; 
             occup.valueCreneau=creneauDocs.debut+"-"+creneauDocs.fin;

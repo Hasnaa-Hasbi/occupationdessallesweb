@@ -13,6 +13,9 @@ var occupationSchema=new mongoose.Schema({
     },
     valueCreneau: { 
         type:String
+    },
+    nameSalle: { 
+        type:String
     }
 
 });

@@ -2,11 +2,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
 <div style="padding:5px; padding-left:210px; padding-right:210px;padding-bottom:200px">
-    <div class="container shadow text-center" style="float:left; border-radius: 6px; background-color:rgb(224, 230, 245); padding:30px; margin:40px; width: 360px" >
-        <h3><font color="rgb(41, 41, 87);">Number of Blocs :</font> <font color=blue><b>{{nbBlocs}}</b></font></h3>
+    <div class="container shadow text-center" style="float:left; border-radius: 6px; background-color:#3275B0; padding:30px; margin:40px; width: 360px" >
+        <h3><font color="white">Number of Blocs :<b>{{nbBlocs}}</b></font></h3>
     </div>
-    <div class="container shadow text-center" style="float:right; border-radius: 6px; background-color:rgb(224, 230, 245); padding:30px; margin:40px; width: 360px" >
-        <h3><font color="rgb(41, 41, 87);">Number of Classrooms : </font><font color=blue><b>{{nbClassrooms}}</b></font></h3>
+    <div class="container shadow text-center" style="float:right; border-radius: 6px; background-color:#3275B0; padding:30px; margin:40px; width: 360px" >
+        <h3><font color="white">Number of Classrooms :<b>{{nbClassrooms}}</b></font></h3>
     </div>
 </div>
 
@@ -36,14 +36,23 @@
 
 
 <canvas id="graph1" style="margin:270px; margin-top:70px; margin-bottom: 92px"></canvas>
+<canvas id="graph2" style="margin:270px; margin-top:20px; margin-bottom: 92px"></canvas>
+
+
+
 
 
 <script>
+
     var salles= [];
     '{{#each sallesNames}}'
         salles.push('{{this}}');    
     '{{/each}}'
 
+    var numbers1= [];
+    '{{#each occupationsSalle}}'
+        numbers1.push('{{this}}');    
+    '{{/each}}'
 
     var ctx = document.getElementById('graph1').getContext('2d');
 
@@ -51,9 +60,9 @@
         labels: salles,
         datasets: [{
             label: "Occupation of classrooms",
-            backgroundColor: 'lightblue',
+            backgroundColor: ["#8A2BE2", "darkorange", "lightblue", "yellow", "darkblue", "brown"],
             borderColor: 'rgb(255, 99, 132)',
-            data: [0,0,0,0,0,0]
+            data: numbers1
         }]
     }
    
@@ -61,6 +70,35 @@
         type: 'bar',
         data: data,
     }
+
+    //Salles per bloc
+    var blocs= [];
+    '{{#each blocs}}'
+        blocs.push('{{this.libelle}}');    
+    '{{/each}}'
+
+    var numbers= [];
+    '{{#each SallesBloc}}'
+        numbers.push('{{this}}');    
+    '{{/each}}'
+
+    var ctx2 = document.getElementById('graph2').getContext('2d');
+
+    var data2 = {
+        labels: blocs,
+        datasets: [{
+            label: "Classrooms per bloc",
+            backgroundColor:"#3275B0",
+            borderColor: 'rgb(255, 99, 132)',
+            data: numbers,
+        }]
+    }
+    var config2 = {
+        type: 'bar',
+        data: data2,
+    }
+
     var graph1 = new Chart(ctx, config)
+    var graph2 = new Chart(ctx2, config2)
 </script>
 

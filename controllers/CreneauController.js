@@ -33,21 +33,22 @@ router.get('/list/:id', (req, res) => {
         if (!err) {
             salle.code = doc.code;
             salle.libelle = doc.libelle;
-        }
-    });
-
-    Occupation.find({ idSalle: req.params.id }, (err, docs) => {
-        if (!err) {   
-            res.render("occupation/listOccupation", {
-                salle:salle,
-                list: docs
+            Occupation.find({ idSalle: req.params.id }, (err, docs) => {
+                if (!err) {   
+                    res.render("occupation/listOccupation", {
+                        salle:salle,
+                        list: docs
+                    });
+        
+                }
+                else {
+                    console.log('Error in retrieving occupation list :' + err);
+                }
             });
-
-        }
-        else {
-            console.log('Error in retrieving occupation list :' + err);
         }
     });
+
+    
 
 
 });
@@ -62,6 +63,7 @@ router.post('/', (req, res) => {
         }
         else{
             occupation.idSalle=docs;
+            occupation.nameSalle=docs.code;
             Creneau.findById(req.body.creneau, function(err,creneauDocs){
                 if (err){
                     console.log(err);
